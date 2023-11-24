@@ -65,9 +65,9 @@ async function main() {
     canvas.height = 600;
     document.body.appendChild(canvas);
 
-    // Coordinates for Jeddah
-    const latitude = 21.492500;
-    const longitude = 39.177570;
+    // Coordinates for Surabaya
+    const latitude = -7.288131;
+    const longitude = 112.802896;
 
     // Fetch weather data and update graphics
     const weatherData = await getWeatherDataByCoordinates(latitude, longitude);
