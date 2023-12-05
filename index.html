@@ -4,17 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Visualization</title>
-    <style>
-        canvas {
-            display: block;
-            margin: auto;
-            border: 1px solid #000;
-        }
-    </style>
+    <!-- <link href="assets/css/switch-style.css" rel="stylesheet"> -->
+    <link href="assets/css/location-style.css" rel="stylesheet">
+    <link href="assets/css/index-style.css" rel="stylesheet">
+    <link href="assets/css/gender-style.css" rel="stylesheet">
+    <script src="assets/js/location-script.js"></script>
 </head>
 <body>
-    <iframe src="assets\iframe\switch.html" frameborder="0" title="Toggle Switch"></iframe>
+    <div class="switchGender">
+    <input type="checkbox" id="gender">
+        <label for="gender">
+            <span class="knob"><i></i></span>
+        </label>
+    </div>
+  
+    <div class="searchLocation">
+        <div class="main-search-input-wrap">
+            <div class="main-search-input fl-wrap">
+                <div class="main-search-input-item">
+                    <!-- <label for="searchInput">Search City:</label> -->
+                    <input type="text"  id="searchInput" value="" placeholder="Search Location...">
+                </div>
+            <button onclick="searchCity()" class="main-search-button">Search</button>
+        
+        </div>
+        <div id="result"></div>
+    </div>
 
-    <script src="weather_api_test.js"></script>
+
+     
+
+    <script src="weather_api_test.js"></script> 
 </body>
 </html>
