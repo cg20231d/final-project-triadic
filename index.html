@@ -9,13 +9,16 @@
     <link href="assets/css/index-style.css" rel="stylesheet">
     <link href="assets/css/gender-style.css" rel="stylesheet">
     <script src="assets/js/location-script.js"></script>
+    <script src="assets/js/gender-script.js"></script>
 </head>
 <body>
+    <div class="switchAndSearchBar">
     <div class="switchGender">
     <input type="checkbox" id="gender">
         <label for="gender">
-            <span class="knob"><i></i></span>
+            <span class="knob"><i></i></span>‎
         </label>
+    </input>
     </div>
   
     <div class="searchLocation">
@@ -28,10 +31,11 @@
             <button onclick="searchCity()" class="main-search-button">Search</button>
         
         </div>
-        <div id="result"></div>
     </div>
-
-
+</div>
+    <br><br>
+    <div id="resultLocation"></div>
+    <div id="resultGender"></div>
      
 
     <script src="weather_api_test.js"></script> 

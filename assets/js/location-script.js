@@ -44,9 +44,17 @@ async function searchCity() {
     let result = lines.slice(1).find(line => {
         const values = line.split(',');
         try {
-        const locationName = values[2].toLowerCase();
-        const cityName = locationName.slice(locationName.indexOf(' ') + 1, -1);
-        return levenshteinDistance(cityName, searchInput) < 3;
+            console.log(searchInput.split(' '));
+            if (searchInput.split(' ').length > 1){
+                const cityName = values[2].toLowerCase();
+                
+                return levenshteinDistance(cityName, searchInput) < 3;
+            }
+            else {
+                const locationName = values[2].toLowerCase();
+                const cityName = locationName.slice(locationName.indexOf(' ') + 1, -1);
+                return levenshteinDistance(cityName, searchInput) < 3;
+            }
         } catch {
           return;
         }
@@ -59,9 +67,8 @@ async function searchCity() {
             const latitude = values[5];
             const longitude = values[6];
             const foundCity = values[2];
-            console.log("asjdas");
-            document.getElementById('result').textContent = `City: ${originalInput}, Found: ${foundCity}, Latitude: ${latitude}, Longitude: ${longitude}`;
-            document.getElementById('result').style.display = 'block';
+            document.getElementById('resultLocation').textContent = `City: ${originalInput}, Found: ${foundCity}, Latitude: ${latitude}, Longitude: ${longitude}`;
+            document.getElementById('resultLocation').style.display = 'block';
         } else {
         // If not found in the first CSV, search in the second CSV
         result = linesV2.slice(1).find(line => {
@@ -80,11 +87,11 @@ async function searchCity() {
             const latitude = values[2];
             const longitude = values[3];
             const foundCity = values[1];
-            document.getElementById('result').textContent = `City: ${originalInput}, Found: ${foundCity}, Latitude: ${latitude}, Longitude: ${longitude}`;
-            document.getElementById('result').style.display = 'block';
+            document.getElementById('resultLocation').textContent = `City: ${originalInput}, Found: ${foundCity}, Latitude: ${latitude}, Longitude: ${longitude}`;
+            document.getElementById('resultLocation').style.display = 'block';
         } else {
-            document.getElementById('result').textContent = `City not found.`;
-            document.getElementById('result').style.display = 'block';
+            document.getElementById('resultLocation').textContent = `City not found.`;
+            document.getElementById('resultLocation').style.display = 'block';
         }
     }
 }
