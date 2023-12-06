@@ -11,12 +11,11 @@
   <style>
     canvas {
           display: block;
-          margin: 100px;
+          margin: 0;
           border: 1px solid #70dbeb;
       }
   </style>
 
-  <script src="assets/js/location-script.js"></script>
   <script src="assets/js/gender-script.js"></script>
   <script src="assets/js/shop-script.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -32,6 +31,19 @@
 
 </head>
 <body>
+
+  <script type="module">
+    import { searchCity } from './assets/js/weather_api_test.js';
+
+    // Add an event listener to the button
+    document.querySelector('.main-search-button').addEventListener('click', handleButtonClick);
+
+    // Function to handle the button click
+    function handleButtonClick() {
+        searchCity();
+    }
+  </script>
+
   <div class="switchAndSearchBar">
     <div class="switchGender">
     <input type="checkbox" id="gender">
@@ -48,7 +60,7 @@
                     <!-- <label for="searchInput">Search City:</label> -->
                     <input type="text"  id="searchInput" value="" placeholder="Search Location...">
                 </div>
-            <button onclick="searchCity()" class="main-search-button">Search</button>
+              <button class="main-search-button">Search</button>
         
             </div>
         </div>
@@ -104,9 +116,8 @@
   </div>
 
   <canvas id="weatherCanvas"></canvas>
-  <canvas id="3dCanvas"></canvas>
+  <canvas id="3dCanvas-1"></canvas>
 
-  <script src="assets/js/weather_api_test.js"></script> 
-  <script type="module" src="assets/js/3dmodel.js"></script>
+  <script type="module" src="assets/js/weather_api_test.js"></script> 
 </body>
 </html>
