@@ -18,7 +18,7 @@ const camera = new THREE.PerspectiveCamera(75, canvas.width / canvas.height, 0.1
 
 const controls = new OrbitControls( camera, renderer.domElement );
 
-const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+const directionalLight = new THREE.DirectionalLight(0xffff00, 1);
 directionalLight.position.set(1, 1, 1).normalize();
 scene.add(directionalLight);
 
@@ -153,9 +153,8 @@ export async function searchCity() {
             document.getElementById('resultLocation').style.display = 'block';
 
             // Fetch weather data and update graphics
-            const lat = parseFloat(latitude);
-            const long = parseFloat(longitude);
-            console.log(lat, long);
+            const lat = parseFloat(latitude.replace(/"/g, ''));
+            const long = parseFloat(longitude.replace(/"/g, ''));
             const weatherData = await getWeatherDataByCoordinates(lat, long);
             displayWeatherData(weatherData);
         } else {
@@ -209,37 +208,81 @@ function setBackgroundColor(weatherDescription) {
 
     if (typeof weatherDescription === 'string') {
         let imagePath;
-        let modelUrl;
+
+        let modelUrlTop;
+        let modelUrlMid;
+        let modelUrlBot;
 
         if (weatherDescription.toLowerCase().includes('clear')) {
             if (gender === 'lk'){
-                modelUrl = 'assets/models/MaleCharBaseMesh.gltf';
+                modelUrlTop = 'assets/models/male/top/other/long_sleeve_shirt.gltf';
+                modelUrlMid = 'assets/models/male/middle/clear/Shorts.gltf'
+                modelUrlBot = 'assets/models/male/bottom/other/slipper.gltf'
+
+                imagePath = 'assets/images/sun.png';
             } else {
-                modelUrl = 'assets/models/FemaleCharBaseMesh.gltf';
+                modelUrlTop = 'assets/models/female/top/other/blouse_2.gltf';
+                modelUrlMid = 'assets/models/female/middle/other/girl_skirt.gltf'
+                modelUrlBot = 'assets/models/female/bottom/other/heels.gltf'
+
+                imagePath = 'assets/images/sun.png';
             }
-            // modelUrl = 'assets/models/MaleCharBaseMesh.gltf';
-            imagePath = 'assets/images/sun.png';  // Path to clear sky image
         } else if (weatherDescription.toLowerCase().includes('cloud')) {
             if (gender === 'lk'){
-                modelUrl = 'assets/models/MaleCharBaseMesh.gltf';
-                imagePath = 'assets/images/rainbow.png';
+                modelUrlTop = 'assets/models/male/top/other/long_sleeve_shirt.gltf';
+                modelUrlMid = 'assets/models/male/middle/other/jeans.gltf'
+                modelUrlBot = 'assets/models/male/bottom/other/flip_flops.gltf'
+
+                imagePath = 'assets/images/clouds.png';
             } else {
-                modelUrl = 'assets/models/FemaleCharBaseMesh.gltf';
+                modelUrlTop = 'assets/models/female/top/other/blouse_2.gltf';
+                modelUrlMid = 'assets/models/female/middle/other/girl_skirt.gltf'
+                modelUrlBot = 'assets/models/female/bottom/other/slipper.gltf'
+
+                imagePath = 'assets/images/clouds.png';
+            }
+        } else if (weatherDescription.toLowerCase().includes('rain')) {
+            if (gender === 'lk'){
+                modelUrlTop = 'assets/models/male/top/rain/long_sleeve_t_shirt.gltf';
+                modelUrlMid = 'assets/models/male/middle/other/jeans.gltf'
+                modelUrlBot = 'assets/models/male/bottom/rain/boots.gltf'
+
+                imagePath = 'assets/images/rain.png';
+            } else {
+                modelUrlTop = 'assets/models/female/top/rain/jacket.gltf';
+                modelUrlMid = 'assets/models/female/middle/rain/jeans.gltf'
+                modelUrlBot = 'assets/models/female/bottom/rain/Winter_Boots.gltf'
+
                 imagePath = 'assets/images/rain.png';
             }
-            // modelUrl = 'assets/models/MaleCharBaseMesh.gltf';
-            // imagePath = 'assets/images/clouds.png';  // Path to cloudy image
-        } else if (weatherDescription.toLowerCase().includes('rain')) {
-            modelUrl = 'assets/models/MaleCharBaseMesh.gltf';
-            imagePath = 'assets/images/rain.png';  // Path to rainy image
         } else if (weatherDescription.toLowerCase().includes('haze')) {
-            modelUrl = 'assets/models/MaleCharBaseMesh.gltf';
-            imagePath = 'assets/images/few_clouds.jpg';  // Path to haze image
+            if (gender === 'lk'){
+                modelUrlTop = 'assets/models/male/top/other/long_sleeve_shirt.gltf';
+                modelUrlMid = 'assets/models/male/middle/other/jeans.gltf'
+                modelUrlBot = 'assets/models/male/bottom/other/converse_obj.gltf'
+
+                imagePath = 'assets/images/few_clouds.png';
+            } else {
+                modelUrlTop = 'assets/models/female/top/other/blouse_2.gltf';
+                modelUrlMid = 'assets/models/female/middle/other/girl_skirt.gltf'
+                modelUrlBot = 'assets/models/female/bottom/other/Sandals.gltf'
+
+                imagePath = 'assets/images/few_clouds.png';
+            }
         } else {
-            modelUrl = 'assets/models/MaleCharBaseMesh.gltf';
-            console.error('Invalid weather description:', weatherDescription);
-            // Handle the case where weatherDescription is not recognized
-            imagePath = 'assets/images/rainbow.png';  // Path to a default image
+            if (gender === 'lk'){
+                modelUrlTop = 'assets/models/male/top/other/long_sleeve_shirt.gltf';
+                modelUrlMid = 'assets/models/male/middle/other/jeans.gltf'
+                modelUrlBot = 'assets/models/male/bottom/other/Shoes.gltf'
+
+                imagePath = 'assets/images/rainbow.png';
+            } else {
+                modelUrlTop = 'assets/models/female/top/other/blouse_2.gltf';
+                modelUrlMid = 'assets/models/female/middle/other/girl_skirt.gltf'
+                modelUrlBot = 'assets/models/female/bottom/other/converse_obj.gltf'
+
+                imagePath = 'assets/images/rainbow.png';
+            }
         }
 
         // Load and draw the image on the canvasWeither
@@ -250,7 +293,18 @@ function setBackgroundColor(weatherDescription) {
             context.drawImage(image, 0, 0, canvasWeither.width, canvasWeither.height);
         };
 
-        loader.load(modelUrl, (gltf) => {
+        loader.load('assets/models/environment.gltf', (gltf) => {
+            const environment = gltf.scene;
+            environment.scale.set(5, 5, 5); // Scale the environment
+            environment.position.set(0, -3, 0); // Set the position of the environment
+        
+            // scene.add(environment);
+            console.log('Environment glTF model loaded:', gltf);
+        }, undefined, (error) => {
+            console.error('Error loading environment glTF model:', error);
+        });
+
+        loader.load(modelUrlMid, (gltf) => {
             const model1 = gltf.scene;
             model1.position.y = 0;
             scene.add(model1);
@@ -260,8 +314,9 @@ function setBackgroundColor(weatherDescription) {
             console.error('Error loading 3D model:', error);
         });
 
-        loader.load(modelUrl, (gltf) => {
+        loader.load(modelUrlTop, (gltf) => {
             const model2 = gltf.scene;
+            model2.scale.set(0.1, 0.1, 0.1);
             model2.position.y = 2;
             scene.add(model2);
 
@@ -270,7 +325,7 @@ function setBackgroundColor(weatherDescription) {
             console.error('Error loading 3D model:', error);
         });
 
-        loader.load(modelUrl, (gltf) => {
+        loader.load(modelUrlBot, (gltf) => {
             const model3 = gltf.scene;
             model3.position.y = -2;
             scene.add(model3);
