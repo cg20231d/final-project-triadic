@@ -1,0 +1,62 @@
+/* Bootstrap Styles */
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css');
+
+/* Custom Styles */
+.btn-lg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+}
+
+.btn-lg:hover span {
+  transform: translateX(-5px);
+}
+
+.btn-lg img {
+  max-height: 36px;
+  margin-right: 8px;
+  transition: transform 0.3s;
+}
+
+.btn-lg:hover img {
+  transform: translateX(5px);
+}
+
+.btn-lg span {
+  flex-grow: 1;
+  transition: transform 0.3s;
+}
+
+
+/* Shopee Button */
+.shopee-color {
+  background-color: #ee4d30;
+}
+
+.shopee-color:hover {
+  background-color: #841d0a;
+}
+
+/* Lazada Button */
+.lazada-color {
+  background-color: #0f146f;
+}
+
+.lazada-color:hover {
+  background-color: #070937;
+}
+
+/* Tokopedia Button */
+.tokopedia-color {
+  background-color: #03ac0e;
+}
+
+.tokopedia-color:hover {
+  background-color: #015607;
+}
+
+/* Try it Yourself Button */
+.try-it-yourself {
+  background-color: #00DBFF;
+}

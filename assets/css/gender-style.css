@@ -76,11 +76,14 @@
 .switchGender .knob > i:after{
     left: -12px;
 }
-.switchGender input:checked + label > .knob{
+.switchGender input:checked + label > .knob {
     box-shadow: 0 0 0 8px #007fcc;
     background-color: #66adff;
-    transform: translateX(98px) rotate(-140deg);
+    /* top: 5%; */
+    transform: translateX(102px) rotate(-140deg) scale(0.8);
+    /* Add more values for resizing in both X and Y directions if needed, like scale(0.9, 0.9) */
 }
+
 .switchGender input:checked + label > .knob > i{
     background-color: #007fcc;
 }
