@@ -33,10 +33,11 @@
     display: inline-block;
     width: 180px;
     height: 82px;
-    box-shadow: 0 0 0 8px lightgray inset;
+    box-shadow: 0 0 0 8px #cc3366 inset;
     border-radius: 60px;
     position: relative;
     z-index: 1;
+    transition: 0.3s;
 }
 
 .switchGender .knob {
@@ -76,6 +77,11 @@
 .switchGender .knob > i:after{
     left: -12px;
 }
+
+.switchGender input:checked + label {
+    box-shadow: 0 0 0 8px #007fcc inset;
+}
+
 .switchGender input:checked + label > .knob {
     box-shadow: 0 0 0 8px #007fcc;
     background-color: #66adff;
