@@ -7,20 +7,52 @@ const apiKey = 'bab5915f023f7655f2aa18da9b2dbe4e';
 const loader = new GLTFLoader();
 
 const canvas = document.getElementById('3dCanvas-1');
+
 const renderer = new THREE.WebGLRenderer({ canvas });
+
 renderer.setSize(window.innerWidth, window.innerHeight);
 
 const scene = new THREE.Scene();
+
 const camera = new THREE.PerspectiveCamera(75, canvas.width / canvas.height, 0.1, 1000);
+
 const controls = new OrbitControls( camera, renderer.domElement );
 
 const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
 directionalLight.position.set(1, 1, 1).normalize();
 scene.add(directionalLight);
 
-camera.position.z = 3;
+camera.position.z = 7;
 camera.position.y = 1;
 camera.position.x = 1;
+
+let gender = 'lk';
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Mendapatkan elemen checkbox
+    const checkbox = document.getElementById("gender");
+    const resultContent = document.getElementById('resultGender');
+    console.log(checkbox);
+
+    // Menambahkan event listener untuk memantau perubahan status checkbox
+    
+
+    checkbox.addEventListener("change", function() {
+        if (checkbox.checked) {
+            gender = 'lk';
+            resultContent.textContent = `Laki - Laki`;
+            resultContent.style.display = 'block';
+
+            searchCity();
+        } else {
+            gender = 'pr';
+            resultContent.textContent = `Perempuan`;
+            resultContent.style.display = 'block';
+
+            searchCity();
+        }
+    });
+});
 
 function levenshteinDistance(str1, str2) {
     const m = str1.length;
@@ -149,7 +181,6 @@ async function getWeatherDataByCoordinates(latitude, longitude) {
 
 function displayWeatherData(data) {
     if (data && 'main' in data) {
-        // console.log(data);  // Display the full data for reference
 
         // Extract relevant information from the API response
         const temperature = data.main.temp - 273;
@@ -161,7 +192,7 @@ function displayWeatherData(data) {
         console.log(data);
 
         // Display the weather information
-        updateWeatherDescription(weatherDescription);
+        // updateWeatherDescription(weatherDescription);
 
         // Graphics rendering based on weather
         setBackgroundColor(weatherDescription);
@@ -181,11 +212,23 @@ function setBackgroundColor(weatherDescription) {
         let modelUrl;
 
         if (weatherDescription.toLowerCase().includes('clear')) {
-            modelUrl = 'assets/models/MaleCharBaseMesh.gltf';
+            if (gender === 'lk'){
+                modelUrl = 'assets/models/MaleCharBaseMesh.gltf';
+            } else {
+                modelUrl = 'assets/models/FemaleCharBaseMesh.gltf';
+            }
+            // modelUrl = 'assets/models/MaleCharBaseMesh.gltf';
             imagePath = 'assets/images/sun.png';  // Path to clear sky image
         } else if (weatherDescription.toLowerCase().includes('cloud')) {
-            modelUrl = 'assets/models/MaleCharBaseMesh.gltf';
-            imagePath = 'assets/images/clouds.png';  // Path to cloudy image
+            if (gender === 'lk'){
+                modelUrl = 'assets/models/MaleCharBaseMesh.gltf';
+                imagePath = 'assets/images/rainbow.png';
+            } else {
+                modelUrl = 'assets/models/FemaleCharBaseMesh.gltf';
+                imagePath = 'assets/images/rain.png';
+            }
+            // modelUrl = 'assets/models/MaleCharBaseMesh.gltf';
+            // imagePath = 'assets/images/clouds.png';  // Path to cloudy image
         } else if (weatherDescription.toLowerCase().includes('rain')) {
             modelUrl = 'assets/models/MaleCharBaseMesh.gltf';
             imagePath = 'assets/images/rain.png';  // Path to rainy image
@@ -208,7 +251,30 @@ function setBackgroundColor(weatherDescription) {
         };
 
         loader.load(modelUrl, (gltf) => {
-            scene.add(gltf.scene);
+            const model1 = gltf.scene;
+            model1.position.y = 0;
+            scene.add(model1);
+
+            console.log('3D model loaded:', gltf);
+        }, undefined, (error) => {
+            console.error('Error loading 3D model:', error);
+        });
+
+        loader.load(modelUrl, (gltf) => {
+            const model2 = gltf.scene;
+            model2.position.y = 2;
+            scene.add(model2);
+
+            console.log('3D model loaded:', gltf);
+        }, undefined, (error) => {
+            console.error('Error loading 3D model:', error);
+        });
+
+        loader.load(modelUrl, (gltf) => {
+            const model3 = gltf.scene;
+            model3.position.y = -2;
+            scene.add(model3);
+
             console.log('3D model loaded:', gltf);
         }, undefined, (error) => {
             console.error('Error loading 3D model:', error);
