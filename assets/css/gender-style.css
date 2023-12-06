@@ -1,0 +1,108 @@
+* {
+    box-sizing: border-box;
+}
+.switchGender {
+    order: 1;
+    padding-top: 5%;
+    padding-left: 2%;
+    padding-right: 10%;
+    margin-right: 2%;
+    padding-bottom: 2%;
+}
+.switchGender input {
+    opacity: 0;
+    top: 3%;
+    cursor: pointer;
+    width: 180px; /* Lebar visual yang diinginkan */
+    height: 180px; /* Tinggi visual yang diinginkan */
+    /* margin: -5px 0 0 -50px; Sesuaikan dengan nilai margin yang sesuai untuk memperbesar hitbox */
+    z-index: 2;
+    position: absolute;
+}
+
+.switchGender body {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.switchGender label {
+    cursor: pointer;
+    display: inline-block;
+    width: 180px;
+    height: 82px;
+    box-shadow: 0 0 0 8px lightgray inset;
+    border-radius: 60px;
+    position: relative;
+    z-index: 1;
+}
+
+.switchGender .knob {
+    position: absolute;
+    width: 82px;
+    top: 0;
+    left: 0;
+    height: 82px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 8px #cc3366 inset;
+    background-color: #ff7f99;
+    transition: 0.3s;
+}
+
+.switchGender .knob > i {
+    position: absolute;
+    width: 8px;
+    height: 50px;
+    top: 100%;
+    background-color: #cc3366;
+    left: calc(50% - 4px); 
+}
+
+.switchGender .knob > i:before,
+.switchGender .knob > i:after{
+    width: 12px;
+    position: absolute;
+    top: 42%;
+    content: "";
+    height: 8px;
+    background-color: #cc3366;
+}
+
+.switchGender .knob > i:before{
+    left: 8px;
+}
+.switchGender .knob > i:after{
+    left: -12px;
+}
+.switchGender input:checked + label > .knob {
+    box-shadow: 0 0 0 8px #007fcc;
+    background-color: #66adff;
+    /* top: 5%; */
+    transform: translateX(102px) rotate(-140deg) scale(0.8);
+    /* Add more values for resizing in both X and Y directions if needed, like scale(0.9, 0.9) */
+}
+
+.switchGender input:checked + label > .knob > i{
+    background-color: #007fcc;
+}
+ 
+.switchGender input:checked + label > .knob > i:after,
+.switchGender input:checked + label > .knob > i:before{
+background-color: #007fcc;
+}
+
+.switchGender input:checked + label > .knob > i:after{
+    top: 36px;
+    width: 24px;
+    left: -14px;
+    transform: rotate(45deg);
+}
+
+.switchGender input:checked + label > .knob > i:before{
+    top: 35px;
+    width: 24px; 
+    left: 0px;
+    transform: rotate(134deg);
+}

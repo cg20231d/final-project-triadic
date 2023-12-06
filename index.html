@@ -4,27 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Visualization</title>
+    <link href="assets/css/location-style.css" rel="stylesheet">
+    <link href="assets/css/index-style.css" rel="stylesheet">
+    <link href="assets/css/gender-style.css" rel="stylesheet">
+    <link href="assets/css/shop-style.css" rel="stylesheet">
     <style>
-        canvas {
+      canvas {
             display: block;
             margin: auto;
             border: 1px solid #000;
         }
     </style>
+
+    <script src="assets/js/location-script.js"></script>
+    <script src="assets/js/gender-script.js"></script>
+    <script src="assets/js/shop-script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script type="importmap">
-        {
-          "imports": {
-            "three": "https://unpkg.com/three@v0.158.0/build/three.module.js",
-            "three/addons/": "https://unpkg.com/three@v0.158.0/examples/jsm/"
-          }
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@v0.158.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@v0.158.0/examples/jsm/"
         }
-      </script>
+      }
+    </script>
 </head>
 <body>
-    <div id="weatherContainer">
-        <div id="weatherDescription"></div>
+    <div class="switchAndSearchBar">
+    <div class="switchGender">
+    <input type="checkbox" id="gender">
+        <label for="gender">
+            <span class="knob"><i></i></span>‎
+        </label>
+    </input>
     </div>
-    <script src="weather_api_test.js"></script>
+  
+    <div class="searchLocation">
+        <div class="main-search-input-wrap">
+            <div class="main-search-input fl-wrap">
+                <div class="main-search-input-item">
+                    <!-- <label for="searchInput">Search City:</label> -->
+                    <input type="text"  id="searchInput" value="" placeholder="Search Location...">
+                </div>
+            <button onclick="searchCity()" class="main-search-button">Search</button>
+        
+        </div>
+    </div>
+</div>
+    <br><br>
+    <div id="resultLocation"></div>
+    <div id="resultGender"></div>
+     
+
+
+    <div class="container">
+        <h2>Modal Example</h2>
+        <button type="button" class="btn btn-info btn-lg try-it-yourself" data-toggle="modal" data-target="#myModal">Try it Yourself</button>
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Shop</h4>
+              </div>
+              <div class="modal-body">
+                <a id="shopeeButton" href="https://shopee.co.id/" class="btn btn-primary btn-lg btn-block shopee-color" target="_blank" rel="noopener">
+                    <img src="assets\images\shopee.png" alt="Shopee Logo">
+                    <span>Lanjutkan dengan Shopee</span>
+                </a>
+                
+                <a id="lazadaButton" href="https://www.lazada.co.id/" class="btn btn-primary btn-lg btn-block lazada-color" target="_blank" rel="noopener">
+                    <img src="assets\images\lazada.png" alt="Lazada Logo">
+                    <span>Lanjutkan dengan Lazada</span>
+                </a>
+                
+                <a id="tokopediaButton" href="https://www.tokopedia.com/" class="btn btn-primary btn-lg btn-block tokopedia-color" target="_blank" rel="noopener">
+                    <img src="assets\images\tokopedia.png" alt="Tokopedia Logo">
+                    <span>Lanjutkan dengan Tokopedia</span>
+                </a>
+                
+                
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <script src="weather_api_test.js"></script> 
 
     <canvas id="3dCanvas" width="800" height="600"></canvas>
     <script type="module" src="3dmodel.js"></script>

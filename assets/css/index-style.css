@@ -1,0 +1,66 @@
+canvas {
+    display: block;
+    margin: auto;
+    border: 1px solid #000;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    font-family: 'Arial', sans-serif;
+    height: 100vh;
+    /* margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; */
+} 
+
+.switchAndSearchBar{
+    display: flex;
+    justify-content: space-between;
+}
+
+#resultLocation {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    display: none;
+}
+
+#resultGender {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    display: none;
+}
+/* 
+#iframe {
+    display: flex;
+    overflow: hidden;
+}
+
+#responsiveSwitchIframe,
+#responsiveLocationIframe {
+    box-sizing: border-box;
+}
+
+#responsiveSwitchIframe {
+    width: 100%; /* Sesuaikan dengan lebar yang diinginkan */
+    /* height: 100%; /* Sesuaikan dengan tinggi yang diinginkan */
+    /* border: none;
+    transform: translate(50%, -50%);
+} */ 
+
+
+/* #responsiveLocationIframe {
+    box-sizing: border-box;
+    width: 100%; /* Adjust as needed */
+    /* margin-right: 25%; Adjust the margin-right to shift it to the left */
+    /* order: 2; Menetapkan urutan 2, sehingga akan tampil di atas #responsiveSwitchIframe */
+/* } */
