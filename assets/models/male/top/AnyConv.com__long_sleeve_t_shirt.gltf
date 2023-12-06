@@ -1,0 +1,165 @@
+{
+    "asset": {
+        "version": "2.0",
+        "generator": "Open Asset Import Library (assimp v5.0.5eb040c7)"
+    },
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 1289,
+            "type": "VEC3",
+            "max": [
+                0.6534649729728699,
+                1.6829689741134644,
+                0.1321299970149994
+            ],
+            "min": [
+                -0.6512659788131714,
+                1.0012749433517457,
+                -0.20011800527572633
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 1289,
+            "type": "VEC3",
+            "max": [
+                0.9991031289100647,
+                0.9948179721832275,
+                0.9995129704475403
+            ],
+            "min": [
+                -0.9990301132202148,
+                -0.9991018772125244,
+                -0.9997347593307495
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 1289,
+            "type": "VEC2",
+            "max": [
+                0.8277999758720398,
+                0.9998199939727783
+            ],
+            "min": [
+                0.00018000000272877514,
+                0.0001900196075439453
+            ]
+        },
+        {
+            "bufferView": 3,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 6768,
+            "type": "SCALAR",
+            "max": [
+                1288
+            ],
+            "min": [
+                0
+            ]
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 68320,
+            "uri": "result.bin"
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 15468,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 15468,
+            "byteLength": 15468,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 30936,
+            "byteLength": 10312,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 41248,
+            "byteLength": 27072,
+            "target": 34963
+        }
+    ],
+    "materials": [
+        {
+            "name": "DefaultMaterial",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.6000000238418579,
+                    0.6000000238418579,
+                    0.6000000238418579,
+                    1.0
+                ],
+                "metallicFactor": 0.0
+            }
+        },
+        {
+            "name": "defaultMat",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.6000000238418579,
+                    0.6000000238418579,
+                    0.6000000238418579,
+                    1.0
+                ],
+                "metallicFactor": 0.0
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "name": "ZBrush_defualt_group",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 1,
+                    "indices": 3,
+                    "attributes": {
+                        "POSITION": 0,
+                        "NORMAL": 1,
+                        "TEXCOORD_0": 2
+                    }
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "name": "input.obj",
+            "children": [
+                1
+            ]
+        },
+        {
+            "name": "ZBrush_defualt_group",
+            "mesh": 0
+        }
+    ],
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "scene": 0
+}
